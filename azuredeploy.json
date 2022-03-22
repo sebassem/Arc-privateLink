@@ -172,7 +172,7 @@
             "name": "[parameters('privateEndpoints_name')]",
             "location": "westeurope",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/', parameters('cloudVNetName'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks/', variables('cloudVNetName'))]"
             ],
             "properties": {
                 "privateLinkServiceConnections": [
