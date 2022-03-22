@@ -61,7 +61,7 @@
         "his_arc_azure_com_externalid":  "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.his.arc.azure.com')]",
         "guestconfiguration_azure_com_externalid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.guestconfiguration.azure.com')]",
         "azure_com_externalid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.dp.kubernetesconfiguration.azure.com')]",
-        "subnetRef": "[tolower(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('cloudVNetName'), parameters('cloudSubnetName')))]"
+        "subnetRef": "[toLower(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('cloudVNetName'), parameters('cloudSubnetName')))]"
     },
     "resources": [
         {
