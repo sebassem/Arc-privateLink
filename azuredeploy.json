@@ -60,10 +60,7 @@
         "contributorRole": "[resourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
         "his_arc_azure_com_externalid":  "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.his.arc.azure.com')]",
         "guestconfiguration_azure_com_externalid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.guestconfiguration.azure.com')]",
-        "azure_com_externalid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.dp.kubernetesconfiguration.azure.com')]",
-        "cloudVNetName" : "[concat(parameters('cloudVNetName'))]",
-        "cloudSubnetName" : "[concat(parameters('cloudSubnetName'))]",
-        "subnetRef": "[toLower(resourceId('Microsoft.Network/virtualNetworks/subnets', variables('cloudVNetName'), variables('cloudSubnetName')))]"
+        "azure_com_externalid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/Microsoft.Network/privateDnsZones/privatelink.dp.kubernetesconfiguration.azure.com')]"
     },
     "resources": [
         {
@@ -172,7 +169,7 @@
             "name": "[parameters('privateEndpoints_name')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/', variables('cloudVNetName'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks/', parameters('cloudVNetName'))]"
             ],
             "properties": {
                 "privateLinkServiceConnections": [
@@ -188,7 +185,7 @@
                 ],
                 "manualPrivateLinkServiceConnections": [],
                 "subnet": {
-                    "id": "[variables('subnetRef')]"
+                    "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('cloudVNetName'), parameters('cloudSubnetName'))]"
                 },
                 "customDnsConfigs": []
             }
